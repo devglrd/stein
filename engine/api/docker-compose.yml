@@ -17,7 +17,6 @@ services:
       - DB_USERNANE=root
       - DB_PASSWORD=root
       - DB_NAME=stein
-      - BUILD_FOLDER=src
     ports:
       - "3000:3000"
 
@@ -25,7 +24,7 @@ services:
     image: node:11
     volumes:
       - ./:/app
-    command: bash -c 'cd /app && npm i && npm run start'
+    command: bash -c 'cd /app && npm i && npm run schema:sync && npm run migration:run && npm run start'
     container_name: stein-api-serve
     links:
       - stein-mysql
@@ -38,7 +37,6 @@ services:
       - DB_USERNANE=root
       - DB_PASSWORD=root
       - DB_NAME=stein
-      - BUILD_FOLDER=src
     ports:
       - "3000:3000"
 

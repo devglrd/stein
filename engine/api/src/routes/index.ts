@@ -11,7 +11,7 @@ routes.use("/api/user", user);
 
 routes.use("/api", (req: Request, res: Response) => {
     return res.status(200).send({
-        "status": 200, "message": "Welcom to stein api "
+        "status": 200, "message": "Welcom to stein api"
     });
 });
 

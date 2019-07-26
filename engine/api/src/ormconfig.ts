@@ -3,7 +3,6 @@ import {ConnectionOptions} from 'typeorm';
 require('dotenv').config();
 
 const config: ConnectionOptions = {
-    insecureAuth: true,
     name: process.env.ORMCONFIG_NAME,
     type: "mysql",
     host: process.env.DB_HOST,
@@ -15,16 +14,14 @@ const config: ConnectionOptions = {
     migrationsRun: true,
     logging: false,
     entities: [
-        "src/entity/**/*.ts",
-        "build/entity/**/*.ts",
+        __dirname + "/entity/*{.js,.ts}",
     ],
     migrations: [
-        "src/migration/**/*.ts",
-        "build/migration/**/*.ts"
+        __dirname + "/migration/*{.js,.ts}",
     ],
     subscribers: [
-        "src/subscriber/**/*.ts",
-        "build/subscriber/**/*.ts"
+        __dirname + "/subscriber/*{.js,.ts}",
+
     ],
     cli: {
         "entitiesDir": "src/entity",
