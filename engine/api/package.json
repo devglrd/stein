@@ -17,10 +17,12 @@
       "body-parser": "^1.18.1",
       "class-validator": "^0.9.1",
       "cors": "^2.8.5",
+      "dotenv": "^8.0.0",
       "express": "^4.15.4",
       "helmet": "^3.20.0",
       "jsonwebtoken": "^8.5.1",
       "mysql": "^2.14.1",
+      "pm2": "^3.5.1",
       "reflect-metadata": "^0.1.10",
       "ts-node-dev": "^1.0.0-pre.40",
       "typeorm": "0.2.18"
@@ -28,10 +30,8 @@
    "scripts": {
       "tsc": "tsc",
       "start": "set debug=* && ts-node-dev --respawn --transpileOnly ./src/index.ts",
-      "prod": "tsc && node ./build/app.js",
+      "prod": "tsc && node ./build/index.js",
       "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
-      "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert",
-
-      "synchronize:true" : "ts-node ./node_modules/typeorm/cli.js synchronize:true"
+      "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert"
    }
 }

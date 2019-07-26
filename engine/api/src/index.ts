@@ -4,9 +4,13 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import helmet = require("helmet");
 import routes from "./routes";
+import * as config from './ormconfig';
 
-createConnection().then(async connection => {
-    const port = 3000;
+require('dotenv').config();
+
+
+createConnection(config).then(async connection => {
+    const port = process.env.APP_PORT;
     // create express app
     const app = express();
     app.use(bodyParser.json());
@@ -17,7 +21,7 @@ createConnection().then(async connection => {
 
     // start express server
     app.listen(port, () => {
-        console.log(`Express server has started on port ${port}. Open http://localhost:${port}/users to see results`);
+        console.log(`Express server has started on port ${port}. Open http://localhost:${port}/api to see results`);
     });
 
 

@@ -1,0 +1,52 @@
+version: '3.5'
+services:
+  stein-api:
+    image: glrd/stein-api
+    build:
+      context: ./
+    container_name: stein-api
+    command: bash -c 'npm run migration:run'
+    links:
+      - stein-mysql
+    environment:
+      - APP_PORT=3000
+      - ORMCONFIG_NAME=production
+      - DB_TYPE=mysql
+      - DB_HOST=stein-mysql
+      - DB_PORT=3306
+      - DB_USERNANE=root
+      - DB_PASSWORD=root
+      - DB_NAME=stein
+      - BUILD_FOLDER=src
+    ports:
+      - "3000:3000"
+
+  stein-api-serve:
+    image: node:11
+    volumes:
+      - ./:/app
+    command: bash -c 'cd /app && npm i && npm run start'
+    container_name: stein-api-serve
+    links:
+      - stein-mysql
+    environment:
+      - APP_PORT=3000
+      - ORMCONFIG_NAME=default
+      - DB_TYPE=mysql
+      - DB_HOST=stein-mysql
+      - DB_PORT=3306
+      - DB_USERNANE=root
+      - DB_PASSWORD=root
+      - DB_NAME=stein
+      - BUILD_FOLDER=src
+    ports:
+      - "3000:3000"
+
+  stein-mysql:
+    image: mysql:5.7
+    container_name: stein-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=stein
+    ports:
+      - 3308:3306
