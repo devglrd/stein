@@ -12,20 +12,24 @@ const config: ConnectionOptions = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     synchronize: true,
+    migrationsRun: true,
     logging: false,
     entities: [
-        process.env.BUILD_FOLDER + "/entity/**/*.ts"
+        "src/entity/**/*.ts",
+        "build/entity/**/*.ts",
     ],
     migrations: [
-        process.env.BUILD_FOLDER + "/migration/**/*.ts"
+        "src/migration/**/*.ts",
+        "build/migration/**/*.ts"
     ],
     subscribers: [
-        process.env.BUILD_FOLDER + "/subscriber/**/*.ts"
+        "src/subscriber/**/*.ts",
+        "build/subscriber/**/*.ts"
     ],
     cli: {
-        "entitiesDir": process.env.BUILD_FOLDER + "/entity",
-        "migrationsDir": process.env.BUILD_FOLDER + "/migration",
-        "subscribersDir": process.env.BUILD_FOLDER + "/subscriber"
+        "entitiesDir": "src/entity",
+        "migrationsDir": "src/migration",
+        "subscribersDir": "src/subscriber"
     }
 };
 

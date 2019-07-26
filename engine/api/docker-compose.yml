@@ -5,12 +5,12 @@ services:
     build:
       context: ./
     container_name: stein-api
-    command: bash -c 'npm run migration:run'
+    command: bash -c 'npm run schema:sync && npm run migration:run && pm2-runtime build/index.js'
     links:
       - stein-mysql
     environment:
       - APP_PORT=3000
-      - ORMCONFIG_NAME=production
+      - ORMCONFIG_NAME=default
       - DB_TYPE=mysql
       - DB_HOST=stein-mysql
       - DB_PORT=3306

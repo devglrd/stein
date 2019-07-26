@@ -31,7 +31,8 @@
       "tsc": "tsc",
       "start": "set debug=* && ts-node-dev --respawn --transpileOnly ./src/index.ts",
       "prod": "tsc && node ./build/index.js",
-      "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
-      "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert"
-   }
+      "migration:run": "ts-node ./node_modules/typeorm/cli.js -f ./src/ormconfig.ts migration:run",
+      "migration:revert": "ts-node ./node_modules/typeorm/cli.js -f ./src/ormconfig.ts migration:revert",
+      "schema:sync" : "ts-node ./node_modules/typeorm/cli.js -f ./src/ormconfig.ts  schema:sync"
+    }
 }
