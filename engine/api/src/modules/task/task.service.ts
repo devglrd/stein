@@ -14,7 +14,7 @@ export class TaskService {
     }
 
     createJob(job, data) {
-        Logger.debug('Saving job...');
+        Logger.log("Job saving ...", 'KueJob');
         return this.kueService.createJob(job, data);
     }
 
@@ -25,6 +25,7 @@ export class TaskService {
         ttl: 3000,
     })
     sendMail(job: Job, done: DoneCallback) {
+        Logger.log("Exec Job...", 'KueJob');
         this.mailerService
             .sendMail({
                 to: job.data.sender,
@@ -39,7 +40,7 @@ export class TaskService {
                 done(null, 'Mail Sent ! ');
             })
             .catch(err => {
-                Logger.error('Error in queue', err)
+                Logger.log("Err in job :" + err, 'KueJob');
             });
     }
 }

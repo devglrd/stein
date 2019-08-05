@@ -2,6 +2,6 @@
 
 ARG="$1"
 source ./.env
-URL=$APP_URL:$APP_PORT/api/$ARG?token=$SEEDER_TOKEN
+URL=$APP_URL:$APP_PORT/api/$ARG?token=$DB_TOKEN
 curl $URL
 

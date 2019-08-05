@@ -6,6 +6,8 @@ services:
       context: ./
     container_name: stein-api
     command: bash -c 'pm2-runtime start ecosystem.config.js --only stein-api'
+    environment:
+      - KUE_START_PROCESSING=false
     links:
       - stein-mysql
       - redis
@@ -20,7 +22,7 @@ services:
     container_name: stein-queue
     command: bash -c 'pm2-runtime start ecosystem.config.js --only stein-worker'
     environment:
-      - KUE_START_PROCESSING=true
+      - KUE_START_PROCESSING=false
     links:
       - stein-mysql
       - redis

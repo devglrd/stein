@@ -36,8 +36,7 @@ export class AuthController {
 
     const token = await this.authService.login(user);
 
-    const job = await this.tasks
-      .createJob(this.tasks.sendMail, {
+    const job = await this.tasks.createJob(this.tasks.sendMail, {
         user,
         sender: user.email,
         mail_title: 'A new account created',
@@ -46,7 +45,7 @@ export class AuthController {
       .save();
 
     job.on('complete', result => {
-      Logger.log('Log from job : ' + result);
+      Logger.log('Log from job : ' + result, 'KueModule');
     });
 
     const result = { user, token };
