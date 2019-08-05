@@ -9,6 +9,7 @@ metadata:
     component: api
     tier: backend
 spec:
+  type: LoadBalancer
   ports:
     - name: http
       port: 3000

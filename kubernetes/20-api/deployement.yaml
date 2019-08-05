@@ -23,19 +23,31 @@ spec:
         component: api
         tier: api
     spec:
+      imagePullSecrets:
+        - name: regcreds
       containers:
         - name: stein-api
-          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.9"
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.10"
           command:
             - bash
             - -c
             - 'pm2-runtime start ecosystem.config.js --only stein-api'
-          imagePullPolicy: 'IfNotPresent'
-#          env:
-#            - name: KUE_START_PROCESSING
-#              value: 'false'
-#            - name: KUE_REDIS_SENTINEL
-#              value: 'true'
+          imagePullPolicy: Always
+          env:
+            - name: KUE_START_PROCESSING
+              value: 'false'
+            - name: KUE_REDIS_SENTINEL
+              value: 'true'
+            - name: KUE_REDIS_PREFIX
+              value: 'k'
+            - name: KUE_REDIS_DB
+              value: '0'
+            - name: KUE_REDIS_SENTINEL_HOST
+              value: 'stein-redis-sentinel-0.stein-redis-sentinel,stein-redis-sentinel-1.stein-redis-sentinel,stein-redis-sentinel-2.stein-redis-sentinel'
+            - name: KUE_REDIS_SENTINEL_PORT
+              value: '26379,26379,26379'
+            - name: KUE_REDIS_SENTINEL_MASTER
+              value: 'mymaster'
 
 
 

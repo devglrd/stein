@@ -18,9 +18,11 @@ spec:
         component: dbsync
         tier: data
     spec:
+      imagePullSecrets:
+        - name: regcreds
       containers:
         - name: stein-dbsync
-          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.9"
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.10"
           command:
             - bash
             - -c

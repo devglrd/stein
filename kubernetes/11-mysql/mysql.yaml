@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - image: mysql:5.7
-          name: mysql
+          name: stein-mysql
           env:
             - name: MYSQL_DATABASE
               value: stein

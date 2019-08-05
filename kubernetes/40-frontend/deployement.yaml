@@ -23,9 +23,11 @@ spec:
         app-group: ui
         tier: frontend
     spec:
+      imagePullSecrets:
+        - name: regcreds
       containers:
         - name: stein-ui
-          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-ui:1.0.8"
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-ui:1.0.10"
           imagePullPolicy: 'IfNotPresent'
           ports:
             - name: http

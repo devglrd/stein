@@ -8,6 +8,12 @@ services:
     command: bash -c 'pm2-runtime start ecosystem.config.js --only stein-api'
     environment:
       - KUE_START_PROCESSING=false
+      - KUE_REDIS_PREFIX=q
+      - KUE_REDIS_DB=0
+      - KUE_REDIS_SENTINEL=true
+      - KUE_REDIS_SENTINEL_HOST=stein-redis-sentinel-0.stein-redis-sentinel,stein-redis-sentinel-1.stein-redis-sentinel,stein-redis-sentinel-2.stein-redis-sentinel
+      - KUE_REDIS_SENTINEL_PORT=26379,26379,26379
+      - KUE_REDIS_SENTINEL_MASTER=mymaster
     links:
       - stein-mysql
       - redis
@@ -23,6 +29,12 @@ services:
     command: bash -c 'pm2-runtime start ecosystem.config.js --only stein-worker'
     environment:
       - KUE_START_PROCESSING=false
+      - KUE_REDIS_PREFIX=q
+      - KUE_REDIS_DB=0
+      - KUE_REDIS_SENTINEL=true
+      - KUE_REDIS_SENTINEL_HOST=stein-redis-sentinel-0.stein-redis-sentinel,stein-redis-sentinel-1.stein-redis-sentinel,stein-redis-sentinel-2.stein-redis-sentinel
+      - KUE_REDIS_SENTINEL_PORT=26379,26379,26379
+      - KUE_REDIS_SENTINEL_MASTER=mymaster
     links:
       - stein-mysql
       - redis
