@@ -1,0 +1,10 @@
+version: '3.5'
+services:
+  kubectl:
+    image: glrd/kubectl-custom
+    build:
+      context : ./
+    container_name: kube
+    command: bash -c 'cd /clusterconfig && ls && kubectl get pods -n be-u'
+    volumes:
+      - "./:/clusterconfig"

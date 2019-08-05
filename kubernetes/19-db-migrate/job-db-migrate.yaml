@@ -1,0 +1,30 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: stein-dbmigrate
+  labels:
+    app: stein
+    app-group: stein
+    component: dbmigrate
+    tier: data
+spec:
+  template:
+    metadata:
+      name: stein
+      labels:
+        app: stein
+        app-group: stein
+        component: dbmigrate
+        tier: data
+
+    spec:
+      containers:
+        - name: stein-dbmigrate
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.9"
+          command:
+            - bash
+            - -c
+            - 'npm run migrate'
+          imagePullPolicy: 'IfNotPresent'
+

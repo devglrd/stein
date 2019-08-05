@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stein-api-queue
+  labels:
+    app: stein
+    app-group: worker
+    component: queue
+    tier: worker
+spec:
+  selector:
+    matchLabels:
+      app: stein
+      app-group: worker
+      component: queue
+      tier: worker
+  template:
+    metadata:
+      labels:
+        app: stein
+        app-group: worker
+        component: queue
+        tier: worker
+    spec:
+      containers:
+        - name: stein-api
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.9"
+          command:
+            - bash
+            - -c
+            - 'pm2-runtime start ecosystem.config.js --only stein-worker'
+          imagePullPolicy: 'IfNotPresent'
+#          env:
+#            - name: KUE_START_PROCESSING
+#              value: 'false'
+#            - name: KUE_REDIS_SENTINEL
+#              value: 'true'
+
+
+

@@ -1,0 +1,46 @@
+<div class="login-box">
+  <div class="action" routerLink="./" [preserveFragment]="false">
+    <img src="assets/icons/cross.svg" alt="">
+  </div>
+
+  <div class="headlines">
+    <h2 class="title-h4">Connexion à Stein !</h2>
+  </div>
+
+
+  <form class="form" [formGroup]="loginForm">
+    <div class="form-group" [class.was-validated]="loginForm.get('email').touched && loginForm.get('email').invalid">
+      <input class="login-input form-control mb-2"
+             name="login" type="email" placeholder="Email" formControlName="email"
+             [class.is-invalid]="loginForm.get('email').touched && loginForm.get('email').invalid" required>
+      <div class="invalid-feedback" *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid">
+        Ce champs est requis et doit être un email valide.
+      </div>
+      <!--<p class="alert alert-danger" *ngIf="login.touched && !login.valid">Ce champ est requis</p>-->
+    </div>
+
+    <div class="form-group"
+         [class.was-validated]="loginForm.get('password').touched && loginForm.get('password').invalid">
+      <input class="login-input form-control mb-2"
+             name="password" type="password" placeholder="Mot de passe" formControlName="password"
+             [class.is-invalid]="loginForm.get('password').touched && loginForm.get('password').invalid" required>
+      <div class="invalid-feedback" *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid">
+        Ce champs est requis
+      </div>
+    </div>
+
+    <a class="d-block link my-3" routerLink="/reset/password">Mot de passe oublié ?</a>
+
+    <p class="login-error-message" *ngIf="!!loginErrorMessage">{{ loginErrorMessage }}</p>
+
+    <div class="row d-flex justify-content-center align-items-center w-100 h-25" *ngIf="loading">
+      <app-loader customClass="little my-4"></app-loader>
+    </div>
+
+    <button class="btn btn-primary w-100 text-center m-0"
+            [disabled]="loginForm.invalid" (click)="onSubmit()">Valider
+    </button>
+
+  </form>
+
+</div>

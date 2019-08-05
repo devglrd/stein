@@ -1,0 +1,56 @@
+version: '3.5'
+services:
+  stein-api:
+    image: glrd/stein-api:latest
+    build:
+      context: ./
+    container_name: stein-api
+    command: bash -c 'pm2-runtime start ecosystem.config.js --only stein-api'
+    links:
+      - stein-mysql
+      - redis
+    ports:
+      - "3000:3000"
+
+
+  stein-queue:
+    image: glrd/stein-api:latest
+    build:
+      context: ./
+    container_name: stein-queue
+    command: bash -c 'pm2-runtime start ecosystem.config.js --only stein-worker'
+    environment:
+      - KUE_START_PROCESSING=true
+    links:
+      - stein-mysql
+      - redis
+
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: always
+
+  stein-api-serve:
+    image: node:11
+    volumes:
+      - ./:/app
+    working_dir: /app
+    command: bash -c 'npm i && cp .env.docker .env && npm run start:dev'
+    container_name: stein-api-serve
+    links:
+      - stein-mysql
+    ports:
+      - "3000:3000"
+
+  stein-mysql:
+    image: mysql:5.7
+    container_name: stein-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=stein
+    ports:
+      - 3308:3306

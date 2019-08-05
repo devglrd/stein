@@ -1,0 +1,131 @@
+@import "~bootstrap/scss/bootstrap-grid";
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: rgba(107, 107, 107, 0.69);
+
+  @include media-breakpoint-down(md) {
+    background-color: #fff;
+    z-index: 1;
+  }
+}
+
+.login-box {
+  width: 50vw;
+  border: 1px solid #4A4A4A;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+
+  .action {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 25px;
+    cursor: pointer;
+  }
+
+  .headlines {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+
+    .headlines-content {
+      color: #2A2A2A;
+      font-size: 16px;
+      line-height: 21px;
+      text-align: center;
+      margin: 0 10px;
+    }
+  }
+
+  .form {
+
+    .login-select {
+      margin-bottom: 10px;
+
+      .login-input {
+        box-sizing: border-box;
+        height: 43px;
+        width: 100%;
+        border: 1px solid #D0D7DD !important;
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        font-size: 16px;
+        line-height: 21px;
+        color: #000000;
+        margin-bottom: 10px;
+        box-shadow: none !important;
+
+        &::placeholder {
+          color: #414141;
+        }
+
+      }
+
+      .label {
+        color: #000000;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 19px;
+      }
+    }
+
+    .login-cgu {
+      margin-bottom: 20px;
+
+      .login-cgu-input {
+        box-sizing: border-box;
+        height: 21px;
+        width: 21px;
+        border: 1px solid #E3E3E3;
+        border-radius: 3px;
+        background-color: #FFFFFF;
+        box-shadow: none !important;
+      }
+
+      .login-cgu-label {
+        color: #262626;
+        font-size: 14px;
+        line-height: 18px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    }
+
+    .login-error-message {
+      color: white;
+      padding: 10px;
+      background-color: red;
+      border-radius: 3px;
+      font-size: 16px;
+      line-height: 21px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+  }
+
+  @include media-breakpoint-down(lg) {
+    width: 50%;
+  }
+
+  @include media-breakpoint-down(md) {
+    width: 90%;
+    box-shadow: unset;
+    border: none;
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+}

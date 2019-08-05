@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stein-api
+  labels:
+    app: stein
+    app-group: api
+    component: api
+    tier: backend
+spec:
+  selector:
+    matchLabels:
+      app: stein
+      app-group: api
+      component: api
+      tier: api
+  template:
+    metadata:
+      labels:
+        app: stein
+        app-group: api
+        component: api
+        tier: api
+    spec:
+      containers:
+        - name: stein-api
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.9"
+          command:
+            - bash
+            - -c
+            - 'pm2-runtime start ecosystem.config.js --only stein-api'
+          imagePullPolicy: 'IfNotPresent'
+#          env:
+#            - name: KUE_START_PROCESSING
+#              value: 'false'
+#            - name: KUE_REDIS_SENTINEL
+#              value: 'true'
+
+
+

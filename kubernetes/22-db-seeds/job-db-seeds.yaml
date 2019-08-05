@@ -1,0 +1,29 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: stein-dbseeds
+  labels:
+    app: stein
+    app-group: stein
+    component: dbseeds
+    tier: data
+spec:
+  template:
+    metadata:
+      name: stein
+      labels:
+        app: stein
+        app-group: stein
+        component: dbseeds
+        tier: data
+    spec:
+      containers:
+        - name: stein-dbseeds
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.9"
+          command:
+            - bash
+            - -c
+            - 'npm run seeds'
+          imagePullPolicy: 'IfNotPresent'
+

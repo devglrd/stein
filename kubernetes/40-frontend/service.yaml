@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stein-ui
+  labels:
+    app: stein-ui
+    app-group: ui
+    component: ui
+    tier: frontend
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+  selector:
+    component: ui
+    app: stein

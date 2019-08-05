@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stein-redis-console
+  labels:
+    app: stein
+    app-group: redis
+    component: console
+    tier: data
+spec:
+  restartPolicy: Always
+  containers:
+    - name: console
+      image: tarosky/k8s-redis-ha:console-3.0.1

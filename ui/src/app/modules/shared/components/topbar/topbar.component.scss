@@ -1,0 +1,120 @@
+@import "../../../../../sass/variables";
+@import "~bootstrap/scss/bootstrap-grid";
+
+$sidebar-padding: 20px;
+
+:host {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.no-auth {
+
+
+  .topbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: $app-website-topbar-height;
+
+    &__wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      width: 100%;
+      height: $app-website-topbar-height;
+      border-bottom: 1px solid $app-border-color;
+      //background-color: $app-background-dark;
+      background: transparent !important;
+    }
+
+    &__brand {
+      display: inline-block;
+      //width: 90px;
+      min-width: 90px;
+      height: $app-website-topbar-height - 30;
+      cursor: pointer;
+      margin-right: 20px;
+
+      &__logo {
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    &__nav {
+      display: inline-flex;
+      height: 100%;
+      padding: 0 10px;
+      margin-left: auto;
+      margin-bottom: 0;
+
+      .nav-item {
+        height: 100%;
+        margin: 0 10px;
+      }
+
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+    }
+
+    &__left {
+      position: absolute;
+      left: 0;
+      display: none;
+
+      .icons__container {
+        width: 24px;
+        height: auto;
+        margin-right: 10px;
+
+        .icons__icon {
+          width: 100%;
+          height: auto;
+
+          path {
+            fill: $app-action-color;
+          }
+
+          &:hover, &:focus {
+            path {
+              fill: $app-action-color-dark;
+            }
+          }
+        }
+
+        @include media-breakpoint-down(md) {
+          width: 18px;
+        }
+      }
+
+      @include media-breakpoint-down(md) {
+        display: inline-flex;
+        align-items: center;
+      }
+
+    }
+
+    &__actions {
+      display: flex;
+
+      &__item {
+        margin: 0 5px;
+      }
+
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+    }
+
+    @include media-breakpoint-down(lg) {
+      justify-content: center;
+    }
+
+  }
+
+}

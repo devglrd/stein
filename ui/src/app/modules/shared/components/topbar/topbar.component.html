@@ -1,0 +1,81 @@
+<!--<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" *ngIf="!auth">-->
+<!--<div class="container">-->
+<!--<a class="navbar-brand" routerLink="/">Stein</a>-->
+<!--<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"-->
+<!--data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"-->
+<!--aria-label="Toggle navigation">-->
+<!--Menu-->
+<!--<i class="fas fa-bars"></i>-->
+<!--</button>-->
+<!--<div class="collapse navbar-collapse" id="navbarResponsive">-->
+<!--<ul class="navbar-nav ml-auto d-flex align-items-center justify-content-between">-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" routerLink="./">Home</a>-->
+<!--</li>-->
+<!--<li class="nav-item btn btn-primary">-->
+<!--<a class="nav-link" routerLink="./" fragment="login">Connexion</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</nav>-->
+<div class="topbar" *ngIf="!auth">
+  <div class="topbar__content">
+
+    <div class="topbar__content__items">
+
+      <div class="topbar__content__items__item topbar-hide-md" routerLink="/" routerLinkActive="active">
+        <div class="topbar__content__items__item__label text-white">Acceuil</div>
+      </div>
+
+      <div class="topbar__content__items__item topbar-hide-md" routerLink="./" fragment="login" routerLinkActive="active">
+        <div class="topbar__content__items__item__label text-white">Connexion</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="topbar" *ngIf="auth">
+
+  <div class="topbar__content">
+
+    <div class="topbar__content__items">
+
+        <div class="topbar__content__items__item topbar-hide-md" routerLink="./articles" routerLinkActive="active">
+          <div class="topbar__content__items__item__label text-white">Articles</div>
+        </div>
+
+        <div class="topbar__content__items__item user" (click)="showAccountDropdown()" #Account>
+          <div class="topbar__content__items__item__label topbar-hide-md text-white" *ngIf="!loading">{{ user.username}}</div>
+
+          <div class="user__thumbnail">
+            <img class="user__thumbnail__image" [src]="user.avatar.file" alt="" *ngIf="!loading && !!user.avatar">
+          </div>
+
+          <div class="topbar__content__items__item__dropdown" *ngIf="showDropdown.account">
+
+            <div class="topbar__content__items__item__dropdown__item" routerLink="./account">
+              <div class="topbar__content__items__item__dropdown__item__label text-white">Paramètres</div>
+              <div class="topbar__content__items__item__dropdown__item__icon">
+                <img src="./assets/icons/settings.svg" alt="">
+              </div>
+            </div>
+
+            <div class="topbar__content__items__item__dropdown__item" (click)="logout()">
+              <div class="topbar__content__items__item__dropdown__item__label text-white">Déconnexion</div>
+              <div class="topbar__content__items__item__dropdown__item__icon">
+                <img src="./assets/icons/exit_to_app.svg" alt="">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+
+</div>
+

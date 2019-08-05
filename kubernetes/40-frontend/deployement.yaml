@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stein-ui
+  labels:
+    app: stein
+    component: ui
+    app-group: ui
+    tier: frontend
+spec:
+  selector:
+    matchLabels:
+      app: stein
+      component: ui
+      app-group: ui
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: stein
+        component: ui
+        app-group: ui
+        tier: frontend
+    spec:
+      containers:
+        - name: stein-ui
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-ui:1.0.8"
+          imagePullPolicy: 'IfNotPresent'
+          ports:
+            - name: http
+              containerPort: 80
+
