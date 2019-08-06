@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stein-redis
+  labels:
+    app: stein
+    component: redis
+    app-group: redis
+    tier: data
+spec:
+  selector:
+    matchLabels:
+      app: stein
+      component: redis
+      app-group: redis
+      tier: data
+  template:
+    metadata:
+      labels:
+        app: stein
+        component: redis
+        app-group: redis
+        tier: data
+    spec:
+      containers:
+        - image: redis:latest
+          name: stein-redis
+          ports:
+            - containerPort: 6379
+              name: redis
+

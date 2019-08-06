@@ -22,7 +22,7 @@ spec:
         - name: regcreds
       containers:
         - name: stein-dbseeds
-          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.10"
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.14"
           command:
             - bash
             - -c

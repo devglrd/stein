@@ -27,17 +27,23 @@ spec:
         - name: regcreds
       containers:
         - name: stein-api
-          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.10"
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.14"
           command:
             - bash
             - -c
             - 'pm2-runtime start ecosystem.config.js --only stein-worker'
-          imagePullPolicy: 'IfNotPresent'
+          imagePullPolicy: Always
           env:
+            - name: DB_CACHE_HOST
+              value: 'stein-redis'
+            - name: KUE_REDIS_HOST
+              value: 'stein-redis'
             - name: KUE_START_PROCESSING
               value: 'true'
             - name: KUE_REDIS_SENTINEL
-              value: 'true'
+              value: 'false'
+            - name: KUE_REDIS_PORT
+              value: '6379'
             - name: KUE_REDIS_PREFIX
               value: 'k'
             - name: KUE_REDIS_DB

@@ -4,9 +4,9 @@ kind: Service
 metadata:
   name: stein-redis
 spec:
-  ports:
-    - port: 3306
-  selector:
-    app: mysql
-    tier: mysql
   clusterIP: None
+  ports:
+    - port: 6379
+  selector:
+    app: stein
+    component: redis

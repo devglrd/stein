@@ -17,13 +17,12 @@ spec:
         app-group: stein
         component: dbmigrate
         tier: data
-
     spec:
       imagePullSecrets:
         - name: regcreds
       containers:
         - name: stein-dbmigrate
-          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.9"
+          image: "xuxk2ofg.gra5.container-registry.ovh.net/stein/stein-api:1.0.14"
           command:
             - bash
             - -c
