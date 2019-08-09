@@ -8,6 +8,10 @@ This is Stein Project, is a Test project of full node typescript api, with k8s c
 - If you want use it in production
     - `chmod +x ./start.sh && ./start.sh prod`
     
+## Auto cd
+The autocd.sh file work if you add your kubeconfig.yaml at /kubernetes
+    
+## Project
 - What i make in this project
     - ~~Moving TypeORM to NestJs~~
     - REST Node Api with NestJs and TypeORM For `SteinShop`

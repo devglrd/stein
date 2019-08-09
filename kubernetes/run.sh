@@ -1,2 +1,10 @@
+$CMD = "$1"
 docker build -t glrd/kubectl-custom:latest .
-docker-compose run kubectl bash
+
+case "$CMD" in
+    "bash") docker-compose run kubectl bash;;
+esac
+
+docker-compose run kubectl $CMD;
+
+
